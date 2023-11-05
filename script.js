@@ -23,17 +23,23 @@ const TicTacToe=function(){
                 lastClick="X";
                 e.target.innerText=lastClick;
                 clickedButtonX.push(Number(e.target.dataset.num));
+                button.disabled=true;
                 if(isMatching(clickedButtonX)){
                     resultElement("X");
                     reStart();
+                    disableAllBtn();
+                    return;
                 }
             }else{
                 lastClick="O";
                 e.target.innerText=lastClick;
                 clickedButtonO.push(Number(e.target.dataset.num));
+                button.disabled=true;
                 if(isMatching(clickedButtonO)){
                     resultElement("O");
                     reStart();
+                    disableAllBtn();
+                    return;
                 }
             }
             steps++;
@@ -68,6 +74,11 @@ const TicTacToe=function(){
     }
     const resultElement=(winner)=>{
         document.querySelector(".result").innerHTML=`<span>Won : ${winner} </span> <button class='restart'>Restart</button>`;
+    }
+    const disableAllBtn=()=>{
+        buttons.forEach((button)=>{
+            button.disabled=true;
+        })
     }
 }
 TicTacToe();
